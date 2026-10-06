@@ -9,7 +9,8 @@
 <style>
 :root{--glass:rgba(16,22,40,.72);--glass2:rgba(27,33,53,.82);--line:rgba(255,255,255,.15);--text:#f6f7fb;--muted:#c2c8d6;--blue:#80baff;--mint:#67e5c5;--shadow:0 26px 90px #0008}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:var(--text);overflow:hidden;background:#10172b}button,a{font:inherit}button{color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}
-.desktop{position:relative;width:100vw;height:100dvh;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#244568 0,transparent 48%),linear-gradient(180deg,#17243c 0%,#203b5c 48%,#17263d 100%)}
+.desktop{position:relative;width:100vw;height:100dvh;overflow:hidden;background:linear-gradient(180deg,rgba(8,15,29,.58),rgba(8,15,29,.72)),url("ai.png") center/cover no-repeat}
+.stars,.moon,.dune{display:none}
 .stars{position:absolute;inset:0;opacity:.55;background-image:radial-gradient(2px 2px at 8% 18%,#fff 50%,transparent 70%),radial-gradient(1px 1px at 18% 35%,#fff 50%,transparent 70%),radial-gradient(1.5px 1.5px at 39% 12%,#fff 50%,transparent 70%),radial-gradient(1px 1px at 62% 21%,#fff 50%,transparent 70%),radial-gradient(2px 2px at 81% 15%,#fff 50%,transparent 70%),radial-gradient(1px 1px at 93% 33%,#fff 50%,transparent 70%),radial-gradient(1px 1px at 70% 43%,#fff 50%,transparent 70%)}
 .moon{position:absolute;top:13%;right:18%;width:70px;height:70px;border-radius:50%;background:linear-gradient(145deg,#fff5df,#a8c4dd);box-shadow:0 0 55px #d2e6ff55;opacity:.72}
 .dune{position:absolute;inset:auto -10% 0;height:52%;pointer-events:none}
@@ -112,6 +113,17 @@
 .resume-page .file-row{max-width:620px;margin:0}
 .resume-preview{display:block;flex:1;width:100%;min-height:220px;border:1px solid #ffffff28;border-radius:8px;background:#fff}
 .resume-preview[hidden]{display:none}
+.education-heading{margin-top:24px}
+.education-list{display:flex;flex-direction:column;gap:16px}
+.education-card{padding:22px 24px;border:1px solid #ffffff1b;border-radius:16px;background:#ffffff0d;box-shadow:inset 0 1px #ffffff08}
+.education-card-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.education-card-heading h3{min-width:0;margin:0;color:#f0f0f4;font-size:20px;line-height:1.3}
+.education-date{flex:none;padding:8px 13px;border-radius:999px;background:#ffffff17;color:#e5e5eb;font-size:13px;font-weight:700;white-space:nowrap}
+.education-program{margin:12px 0 0;color:#d4d4dd;font-size:16px;font-weight:650}
+.education-location{margin:8px 0 17px;color:#afb1bd;font-size:14px}
+.education-grade{display:inline-flex;padding:7px 12px;border:1px solid #4b98ff52;border-radius:8px;background:#357fe633;color:#9bc8ff;font-size:14px;font-weight:750}
+@media(max-width:540px){.education-card{padding:16px}.education-card-heading{flex-wrap:wrap;gap:9px}.education-card-heading h3{font-size:17px}.education-date{margin-left:auto}}
+@media(max-width:900px){.desktop-icons{scrollbar-width:none;-ms-overflow-style:none}.desktop-icons::-webkit-scrollbar{display:none}}
 @media(max-width:900px){.finder-layout{grid-template-columns:160px minmax(0,1fr)}}
 @media(max-width:540px){.finder-layout{grid-template-columns:116px minmax(0,1fr)}.finder-sidebar{padding:13px 5px}.finder-nav-item{gap:6px;padding:7px 5px;font-size:10px}.finder-nav-item svg{width:15px;height:15px}.finder-toolbar{padding:0 9px}.finder-content{padding:15px 7px}.finder-grid{grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:12px 4px}.finder-icon{width:50px;height:50px}.finder-icon svg{width:25px;height:25px}.finder-app{font-size:10px}.finder-folder{font-size:11px}}
 .portrait-lightbox{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;padding:24px;background:#050914e8;backdrop-filter:blur(14px)}
@@ -122,14 +134,44 @@
 .portrait-close:hover,.portrait-close:focus-visible{background:#ffffff2b;transform:scale(1.06);outline:2px solid #80baff}
 @keyframes portraitFade{from{opacity:0}to{opacity:1}}
 @keyframes portraitZoom{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.desktop.is-ready .topbar{animation:topbarReveal .38s ease-out backwards}
+.desktop.is-ready .center-intro{animation:heroReveal .72s cubic-bezier(.2,.75,.25,1) .05s backwards}
+.desktop.is-ready .desktop-icons .app-icon{animation:iconReveal .42s cubic-bezier(.2,.7,.25,1) backwards}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(1){animation-delay:.04s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(2){animation-delay:.09s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(3){animation-delay:.14s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(4){animation-delay:.19s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(5){animation-delay:.24s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(6){animation-delay:.29s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(7){animation-delay:.34s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(8){animation-delay:.39s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(9){animation-delay:.44s}
+.desktop.is-ready .desktop-icons .app-icon:nth-child(10){animation-delay:.49s}
+.desktop.is-ready .dock-wrap{animation:dockReveal .5s cubic-bezier(.2,.75,.25,1) .14s backwards}
+@keyframes topbarReveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroReveal{from{opacity:0;transform:translate(-50%,calc(-50% + 14px))}to{opacity:1;transform:translate(-50%,-50%)}}
+@keyframes iconReveal{from{opacity:0;transform:translateY(9px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes dockReveal{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+.startup-screen{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:#030303;color:#f5f6f8;opacity:1;visibility:visible;transition:opacity .38s ease,visibility .38s ease}
+.startup-screen.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.startup-content{display:flex;flex-direction:column;align-items:center;text-align:center}
+.startup-title{margin:0;padding-left:.22em;font-size:44px;font-weight:800;line-height:1;letter-spacing:.22em}
+.startup-status{margin:29px 0 16px;color:#95badb;font:12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace}
+.startup-track{width:154px;height:3px;overflow:hidden;background:#202b39;border-radius:3px}
+.startup-progress{width:100%;height:100%;background:#f5f6f8;transform:scaleX(0);transform-origin:left center;animation:startupLoad 1.15s cubic-bezier(.5,0,.2,1) forwards}
+@keyframes startupLoad{to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.startup-screen{transition:none}.startup-progress{animation:none;transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.desktop.is-ready .topbar,.desktop.is-ready .center-intro,.desktop.is-ready .desktop-icons .app-icon,.desktop.is-ready .dock-wrap{animation:none}}
 @media(prefers-reduced-motion:reduce){.avatar,.portrait-close{transition:none}.portrait-lightbox.visible,.portrait-view img{animation:none}}
 </style>
 </head>
 <body>
+<div class="startup-screen" id="startupScreen" role="status" aria-label="Initializing Gaurav OS"><div class="startup-content"><h1 class="startup-title">GAURAV</h1><p class="startup-status">Initializing Gaurav OS...</p><div class="startup-track" role="progressbar" aria-label="Loading portfolio" aria-valuemin="0" aria-valuemax="100"><div class="startup-progress"></div></div></div></div>
+<script>const startupScreen=document.getElementById('startupScreen');const startupDelay=window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:1100;window.addEventListener('load',()=>setTimeout(()=>{document.getElementById('desktop').classList.add('is-ready');startupScreen.classList.add('is-hidden')},startupDelay),{once:true});</script>
 <div class="desktop" id="desktop">
 <div class="stars"></div><div class="moon"></div><div class="dune one"></div><div class="dune two"></div><div class="dune three"></div>
 <header class="topbar">
- <div class="top-left"><span class="apple">◆</span><strong id="activeApp">Gaurav</strong><div class="file-menu-wrap hide-mobile" id="fileMenuWrap"><button class="menuitem file-menu-toggle" id="fileMenuToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="fileMenu">File</button><div class="file-menu" id="fileMenu" role="menu" aria-label="File" hidden><button class="file-menu-item" type="button" role="menuitem" data-file-action="new">New Window</button><button class="file-menu-item" type="button" role="menuitem" data-file-action="close">Close Window</button></div></div><span class="menuitem hide-mobile">Go</span><span class="menuitem hide-mobile">Window</span><span class="menuitem hide-mobile">Help</span></div>
+ <div class="top-left"><span class="apple">◆</span><strong id="activeApp">Gaurav</strong><div class="file-menu-wrap hide-mobile" id="fileMenuWrap"><button class="menuitem file-menu-toggle" id="fileMenuToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="fileMenu">File</button><div class="file-menu" id="fileMenu" role="menu" aria-label="File" hidden><button class="file-menu-item" type="button" role="menuitem" data-file-action="new">New Window</button><button class="file-menu-item" type="button" role="menuitem" data-file-action="close">Close Window</button></div></div><div class="file-menu-wrap hide-mobile" id="goMenuWrap"><button class="menuitem file-menu-toggle" id="goMenuToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="goMenu">Go</button><div class="file-menu" id="goMenu" role="menu" aria-label="Go" hidden><button class="file-menu-item" type="button" role="menuitem" data-go-action="home">Home</button><button class="file-menu-item" type="button" role="menuitem" data-go-action="applications">Applications</button></div></div><div class="file-menu-wrap hide-mobile" id="windowMenuWrap"><button class="menuitem file-menu-toggle" id="windowMenuToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="windowMenu">Window</button><div class="file-menu" id="windowMenu" role="menu" aria-label="Window" hidden><button class="file-menu-item" type="button" role="menuitem" data-window-action="about">About Gaurav</button></div></div><div class="file-menu-wrap hide-mobile" id="helpMenuWrap"><button class="menuitem file-menu-toggle" id="helpMenuToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="helpMenu">Help</button><div class="file-menu" id="helpMenu" role="menu" aria-label="Help" hidden><button class="file-menu-item" type="button" role="menuitem" data-help-action="contact">Contact</button></div></div></div>
  <div class="top-right"><span class="status" aria-label="System status"><span class="network-status-wrap" id="networkStatusWrap"><button class="status-network" id="networkToggle" type="button" aria-label="Network status" title="Network status" aria-haspopup="dialog" aria-expanded="false" aria-controls="networkPopover"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5a13.5 13.5 0 0 1 18 0M6.5 12a8.2 8.2 0 0 1 11 0M10 15.5a3 3 0 0 1 4 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg></button><div class="network-popover" id="networkPopover" role="dialog" aria-label="Network status" hidden><div class="network-heading"><strong>Portfolio Network</strong><span class="network-signal" role="img" aria-label="Strong signal"><span></span><span></span><span></span><span></span></span></div><p class="network-description">Decorative local status</p><div class="network-divider"></div><p class="network-note">No network access required</p></div></span><span class="search-status-wrap"><button class="status-search" id="searchToggle" type="button" aria-label="Search portfolio" title="Search portfolio" aria-haspopup="dialog" aria-expanded="false" aria-controls="searchOverlay"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg></button></span><button class="status-info" type="button" data-open="about" aria-label="About Gaurav" title="About Gaurav"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></span><span id="clock">Tue, 8:35 PM</span></div>
 </header>
 
@@ -142,7 +184,7 @@
  <button class="app-icon" data-open="terminal"><span class="glyph"><svg viewBox="0 0 24 24"><path d="m4 5 6 7-6 7M13 19h7"/></svg></span><span class="icon-label">Terminal</span></button>
  <button class="app-icon" data-open="resume"><span class="glyph"><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 12h7M9 16h7"/></svg></span><span class="icon-label">Resume.pdf</span></button>
  <button class="app-icon" data-open="ask"><span class="glyph"><svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></svg></span><span class="icon-label">Ask Gaurav</span></button>
- <button class="app-icon" data-open="about"><span class="glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span><span class="icon-label">About Me</span></button>
+ <button class="app-icon" data-open="about"><span class="glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span><span class="icon-label">About Gaurav</span></button>
  <button class="app-icon" data-open="achievements"><span class="glyph"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 0 1-12 0z"/><path d="M6 6H3v2a4 4 0 0 0 4 4M18 6h3v2a4 4 0 0 1-4 4"/></svg></span><span class="icon-label">Achievements</span></button>
  <button class="app-icon" data-open="certifications"><span class="glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8 12-1 9 5-3 5 3-1-9"/></svg></span><span class="icon-label">Certifications</span></button>
  <button class="app-icon" data-open="skills"><span class="glyph"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 9h6v6H9zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg></span><span class="icon-label">Skills</span></button>
@@ -150,7 +192,7 @@
 
 <div class="center-intro" id="intro">
  <div class="hello">Hey, I'm</div><h1>GAURAV</h1><div class="subtitle">AI/ML ENGINEERING · SQL · DATA SCIENCE</div>
- <div class="intro-cta"><button class="pill" data-open="about">About me</button><button class="pill" data-open="projects">Explore projects</button></div>
+ <div class="intro-cta"><button class="pill" data-open="about">About Gaurav</button><button class="pill" data-open="projects">Explore projects</button></div>
 </div>
 
 <section class="window" id="win-finder" aria-label="Finder window">
@@ -202,8 +244,9 @@
 </section>
 
 <section class="window" id="win-about"><div class="windowbar"><button class="traffic close" data-close="about"></button><button class="traffic minimize" data-close="about"></button><button class="traffic zoom" data-max="about"></button><span class="windowtitle">About Gaurav</span></div><div class="windowbody">
- <div class="profile-layout"><button class="avatar" id="portraitTrigger" type="button" aria-label="Open full-size portrait" aria-haspopup="dialog"><img src="Professional Office Portrait.png" alt="Portrait of Gaurav Panchal"></button><div><div class="eyebrow">About me</div><h2 class="window-heading">Hi, I’m Gaurav Panchal.</h2><p>I’m pursuing an MSc in Data Science and Big Data Analytics at MIT World Peace University, Pune. My projects explore practical AI/ML, from audio feature extraction and deep-learning workflows for Indian classical music to NLP/LLM assistants connected to APIs.</p><p>With HarmoLyric AI, I explore audio features and deep-learning approaches to recognize musical notes and connect them to Indian classical Sargam. QueryGenie gives me a complementary challenge: connecting natural-language questions to an LLM through an API-based assistant.</p><p>I also work with relational data using SQL joins, CTEs, window functions, indexing, and query optimization. I enjoy building queries that are efficient and easy to follow, then turning the results into clear, useful insights.</p><p>I’m aiming to grow into an AI/ML or SQL-focused engineering role, where I can keep learning and help turn data-heavy problems into dependable tools.</p><div class="chips"><span class="chip">AI/ML Engineer</span><span class="chip">SQL Developer</span><span class="chip">Data Scientist</span><span class="chip">Data Analyst</span></div></div></div>
+ <div class="profile-layout"><button class="avatar" id="portraitTrigger" type="button" aria-label="Open full-size portrait" aria-haspopup="dialog"><img src="Professional Office Portrait.png" alt="Portrait of Gaurav Panchal"></button><div><div class="eyebrow">About Gaurav</div><h2 class="window-heading">Hi, I’m Gaurav Panchal.</h2><p>I’m pursuing an MSc in Data Science and Big Data Analytics at MIT World Peace University, Pune. My projects explore practical AI/ML, from audio feature extraction and deep-learning workflows for Indian classical music to NLP/LLM assistants connected to APIs.</p><p>With HarmoLyric AI, I explore audio features and deep-learning approaches to recognize musical notes and connect them to Indian classical Sargam. QueryGenie gives me a complementary challenge: connecting natural-language questions to an LLM through an API-based assistant.</p><p>I also work with relational data using SQL joins, CTEs, window functions, indexing, and query optimization. I enjoy building queries that are efficient and easy to follow, then turning the results into clear, useful insights.</p><p>I’m aiming to grow into an AI/ML or SQL-focused engineering role, where I can keep learning and help turn data-heavy problems into dependable tools.</p><div class="chips"><span class="chip">AI/ML Engineer</span><span class="chip">SQL Developer</span><span class="chip">Data Scientist</span><span class="chip">Data Analyst</span></div></div></div>
  <div class="info-grid" style="margin-top:24px"><div class="info-card"><h3>Current focus</h3><p>Machine learning, LLM applications, SQL, and data-driven projects.</p></div><div class="info-card"><h3>Outside tech</h3><p>Indian classical music and percussion, including pakhawaj and tabla.</p></div></div>
+ <div class="eyebrow education-heading">Education</div><div class="education-list"><article class="education-card"><div class="education-card-heading"><h3>MIT World Peace University (MIT-WPU)</h3><span class="education-date">07/2025 - Present</span></div><p class="education-program">MSc Data Science and Big Data Technologies</p><p class="education-location">Pune, India</p><span class="education-grade">CGPA: 8.14</span></article><article class="education-card"><div class="education-card-heading"><h3>ExcelR Solutions, Mumbai</h3><span class="education-date">06/2024 - 05/2025</span></div><p class="education-program">Data Science and Data Analytics</p><p class="education-location">Mumbai, India</p><span class="education-grade">Distinction</span></article><article class="education-card"><div class="education-card-heading"><h3>PTVA's Sathaye College, Vile Parle</h3><span class="education-date">06/2021 - 04/2024</span></div><p class="education-program">BSc Information Technology</p><p class="education-location">Vile Parle, India</p><span class="education-grade">CGPA: 8</span></article></div>
  </div></section>
 
 <section class="window" id="win-portfolio"><div class="windowbar"><button class="traffic close" data-close="portfolio"></button><button class="traffic minimize" data-close="portfolio"></button><button class="traffic zoom" data-max="portfolio"></button><span class="windowtitle">Portfolio Home</span></div><div class="windowbody">
@@ -261,6 +304,24 @@ fileMenuToggle.addEventListener('click',()=>{const isOpening=fileMenu.hidden;set
 fileMenu.addEventListener('click',e=>{const action=e.target.closest('[data-file-action]')?.dataset.fileAction;if(!action)return;setFileMenuOpen(false);if(action==='new'){openWin('finder');return}const activeWindow=[...document.querySelectorAll('.window.open')].sort((a,b)=>Number(b.style.zIndex)-Number(a.style.zIndex))[0];if(activeWindow)closeWin(activeWindow.id.replace('win-',''));else notify('No open window to close')});
 document.addEventListener('click',e=>{if(!fileMenuWrap.contains(e.target))setFileMenuOpen(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!fileMenu.hidden){setFileMenuOpen(false);fileMenuToggle.focus()}});
+const goMenuWrap=document.getElementById('goMenuWrap'),goMenuToggle=document.getElementById('goMenuToggle'),goMenu=document.getElementById('goMenu');
+function setGoMenuOpen(isOpen){goMenu.hidden=!isOpen;goMenuToggle.setAttribute('aria-expanded',String(isOpen))}
+goMenuToggle.addEventListener('click',()=>{const isOpening=goMenu.hidden;setGoMenuOpen(isOpening);if(isOpening)goMenu.querySelector('[role="menuitem"]').focus()});
+goMenu.addEventListener('click',e=>{const action=e.target.closest('[data-go-action]')?.dataset.goAction;if(!action)return;setGoMenuOpen(false);if(action==='applications'){openWin('finder');return}document.querySelectorAll('.window.open').forEach(win=>closeWin(win.id.replace('win-','')));closeProjectDetail();closePortrait();searchOverlay.hidden=true;searchToggle.setAttribute('aria-expanded','false');setNetworkPopoverOpen(false)});
+document.addEventListener('click',e=>{if(!goMenuWrap.contains(e.target))setGoMenuOpen(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!goMenu.hidden){setGoMenuOpen(false);goMenuToggle.focus()}});
+const windowMenuWrap=document.getElementById('windowMenuWrap'),windowMenuToggle=document.getElementById('windowMenuToggle'),windowMenu=document.getElementById('windowMenu');
+function setWindowMenuOpen(isOpen){windowMenu.hidden=!isOpen;windowMenuToggle.setAttribute('aria-expanded',String(isOpen))}
+windowMenuToggle.addEventListener('click',()=>{const isOpening=windowMenu.hidden;setWindowMenuOpen(isOpening);if(isOpening)windowMenu.querySelector('[role="menuitem"]').focus()});
+windowMenu.addEventListener('click',e=>{if(!e.target.closest('[data-window-action="about"]'))return;setWindowMenuOpen(false);openWin('about')});
+document.addEventListener('click',e=>{if(!windowMenuWrap.contains(e.target))setWindowMenuOpen(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!windowMenu.hidden){setWindowMenuOpen(false);windowMenuToggle.focus()}});
+const helpMenuWrap=document.getElementById('helpMenuWrap'),helpMenuToggle=document.getElementById('helpMenuToggle'),helpMenu=document.getElementById('helpMenu');
+function setHelpMenuOpen(isOpen){helpMenu.hidden=!isOpen;helpMenuToggle.setAttribute('aria-expanded',String(isOpen))}
+helpMenuToggle.addEventListener('click',()=>{const isOpening=helpMenu.hidden;setHelpMenuOpen(isOpening);if(isOpening)helpMenu.querySelector('[role="menuitem"]').focus()});
+helpMenu.addEventListener('click',e=>{if(!e.target.closest('[data-help-action]'))return;setHelpMenuOpen(false);openWin('community')});
+document.addEventListener('click',e=>{if(!helpMenuWrap.contains(e.target))setHelpMenuOpen(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!helpMenu.hidden){setHelpMenuOpen(false);helpMenuToggle.focus()}});
 const networkStatusWrap=document.getElementById('networkStatusWrap'),networkToggle=document.getElementById('networkToggle'),networkPopover=document.getElementById('networkPopover');
 function setNetworkPopoverOpen(isOpen){networkPopover.hidden=!isOpen;networkToggle.setAttribute('aria-expanded',String(isOpen))}
 networkToggle.addEventListener('click',()=>setNetworkPopoverOpen(networkPopover.hidden));
