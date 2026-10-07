@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const scriptUrl = document.currentScript?.src;
   if (scriptUrl) {
     const stylesheet = document.createElement('link');
@@ -107,7 +107,22 @@
   function addMessage(text, sender) {
     const message = document.createElement('div');
     message.className = `portfolio-chat-message is-${sender}`;
-    message.textContent = text;
+    if (sender === 'assistant') {
+      const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
+      let lastIndex = 0;
+      for (const match of text.matchAll(emailPattern)) {
+        const emailStart = match.index;
+        message.append(document.createTextNode(text.slice(lastIndex, emailStart)));
+        const link = document.createElement('a');
+        link.href = `mailto:${match[0]}`;
+        link.textContent = match[0];
+        message.append(link);
+        lastIndex = emailStart + match[0].length;
+      }
+      message.append(document.createTextNode(text.slice(lastIndex)));
+    } else {
+      message.textContent = text;
+    }
     log.append(message);
     log.scrollTop = log.scrollHeight;
   }
@@ -115,6 +130,18 @@
   function answerQuestion(question) {
     const answer = answers.find((item) => item.match.test(question));
     return answer?.text ?? 'I don’t have that detail in the portfolio yet. Try asking about Gaurav’s journey, projects, skills, experience, education, certificates, or contact details.';
+  }
+
+  function syncChatViewport() {
+    if (panel.hidden || document.activeElement !== input || !window.matchMedia('(max-width: 540px)').matches) {
+      panel.classList.remove('is-keyboard-open');
+      return;
+    }
+
+    const viewport = window.visualViewport;
+    panel.style.setProperty('--portfolio-chat-viewport-top', `${viewport?.offsetTop ?? 0}px`);
+    panel.style.setProperty('--portfolio-chat-viewport-height', `${viewport?.height ?? window.innerHeight}px`);
+    panel.classList.add('is-keyboard-open');
   }
 
   function sendQuestion(question) {
@@ -129,11 +156,13 @@
   launcher.addEventListener('click', () => {
     panel.hidden = !panel.hidden;
     launcher.setAttribute('aria-expanded', String(!panel.hidden));
-    if (!panel.hidden) input.focus();
+    if (!panel.hidden && !window.matchMedia('(max-width: 540px)').matches) input.focus();
+    syncChatViewport();
   });
   closeButton.addEventListener('click', () => {
     panel.hidden = true;
     launcher.setAttribute('aria-expanded', 'false');
+    syncChatViewport();
     launcher.focus();
   });
   form.addEventListener('submit', (event) => {
@@ -143,10 +172,16 @@
   widget.querySelectorAll('.portfolio-chat-suggestions button').forEach((button) => {
     button.addEventListener('click', () => sendQuestion(button.textContent));
   });
+  input.addEventListener('focus', syncChatViewport);
+  input.addEventListener('blur', syncChatViewport);
+  window.addEventListener('resize', syncChatViewport);
+  window.visualViewport?.addEventListener('resize', syncChatViewport);
+  window.visualViewport?.addEventListener('scroll', syncChatViewport);
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !panel.hidden) {
       panel.hidden = true;
       launcher.setAttribute('aria-expanded', 'false');
+      syncChatViewport();
       launcher.focus();
     }
   });
