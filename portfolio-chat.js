@@ -37,12 +37,12 @@
       text: 'The AI Music Generator is a project concept exploring Indian classical raga information and musical patterns to produce structured melodic ideas. Its listed areas include Python, music theory, machine-learning concepts, and audio/sequence processing.'
     },
     {
-      match: /\b(sql project|data analytics project|analytics project)\b/i,
-      text: 'The Data Analytics & SQL project focuses on querying structured datasets, cleaning and exploring data, and presenting findings through reports and dashboards. The portfolio lists SQL, MySQL, Python, Pandas, Excel, Power BI, and Tableau.'
+      match: /\b(civicvision|civic|grievance|complaint|smart city)\b/i,
+      text: 'CivicVision is a proposed NoSQL-based AI system for smart civic issue management. It combines text and image classification, location context, MongoDB, Kafka, Spark, duplicate detection, priority and resolution prediction, hotspot analysis, and an authority dashboard.'
     },
     {
       match: /\b(projects|projects has|projects built|work|portfolio projects)\b/i,
-      text: 'Gaurav’s projects include HarmoLyric AI (audio-to-Sargam), QueryGenie (natural-language-to-SQL), an AI Music Generator concept, Data Analytics & SQL, Emotion Detection, and IPL Cricket Data Analysis.'
+      text: 'Gaurav’s projects include HarmoLyric AI (audio-to-Sargam), QueryGenie (natural-language-to-SQL), CivicVision (AI civic issue management), an AI Music Generator concept, Emotion Detection, and IPL Cricket Data Analysis.'
     },
     {
       match: /\b(intern|internship|experience|aivariant|10k|10000 records)\b/i,
